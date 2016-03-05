@@ -15,7 +15,7 @@ namespace GameStructure
     {
 
         public GameEngine gEngine;
-        public static bool AI_State = false;
+        public static bool AI_State = false; //this is used for switching between AI and manual mode
         public GameManager()
         {
             gEngine = new GameEngine();   
@@ -64,15 +64,15 @@ namespace GameStructure
                     AI.initializeGraph(gEngine.map);
                     Node nearestC = AI.getNearestCoin(gEngine.myTank);
                     Stack<Node> stC = AI.findPath(nearestC);
-                    List<int> directionsC = AI.getDirections(stC);
+                    List<int> directionsC = AI.getDirections(stC);//get the direction list for nearest coin
 
                     AI = new pathFinder();
                     AI.initializeGraph(gEngine.map);
                     Node nearestL = AI.getNearestLifePack(gEngine.myTank);
                     Stack<Node> stL = AI.findPath(nearestL);
-                    List<int> directionsL = AI.getDirections(stL);
+                    List<int> directionsL = AI.getDirections(stL);//get the direction list for nearest lifepack
 
-                    if (gEngine.myTank.Health>60)
+                    if (gEngine.myTank.Health>60)//gives priority to find health packs if my health is redusing below 60
                     {
                         if (!(directionsC == null))
                         {
@@ -96,13 +96,13 @@ namespace GameStructure
             }
         }
 
-        public void sendCommands(List<int> dir, Tank myTank)
+        public void sendCommands(List<int> dir, Tank myTank)//this method is sending moving commands for the AI part
         {
             //for (int i = 0; i < dir.Count; i++)
             //{
             try
             {
-                if (myTank.Direction == dir[0])
+                if (myTank.Direction == dir[0])//If the current direction is already set for the required direction
                 {
                     switch (dir[0])
                     {
@@ -134,7 +134,7 @@ namespace GameStructure
                 }
                 else
                 {
-                    switch (dir[0])
+                    switch (dir[0])//if the current direction is somthing other than required direction
                     {
                         case 0:
                             Console.WriteLine("chandu 2 0.............................");
@@ -177,6 +177,36 @@ namespace GameStructure
             }
                 
             //}
+        }
+
+
+        private int[] getFrontCordinate(Tank tk)
+        {
+            int dir = tk.Direction;
+            int[] arr = new int[2];
+            switch (dir)
+            {
+                case 0:
+                    arr[0] = tk.Ycod - 1;
+                    arr[1] = tk.Xcod;
+                    break;
+                case 1:
+                    arr[0] = tk.Ycod;
+                    arr[1] = tk.Xcod + 1;
+                    break;
+                case 2:
+                    arr[0] = tk.Ycod + 1;
+                    arr[1] = tk.Xcod;
+                    break;
+                case 3:
+                    arr[0] = tk.Ycod;
+                    arr[1] = tk.Xcod - 1;
+                    break;
+                default:
+                    Console.WriteLine("An error occured in finding the front cordinates");
+                    break;
+            }
+            return arr;
         }
     }
 }

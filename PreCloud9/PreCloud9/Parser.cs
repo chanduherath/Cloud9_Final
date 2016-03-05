@@ -13,7 +13,7 @@ namespace GameStructure
     {
         
 
-        public LifePack createLifePack(String str)
+        public LifePack createLifePack(String str)//A string starting with L: is passed to this method and it returns a LifePack object
         {
             LifePack lf = new LifePack();
             char[] delimiters = new char[] { ':', '#', ',' };
@@ -26,7 +26,7 @@ namespace GameStructure
             return lf;
         }
 
-        public Coin createCoin(String str)
+        public Coin createCoin(String str)//A string starting with C: is passed to this method and it returns a Coin Object
         {
             Coin coin = new Coin();
             char[] delimiters = new char[] { ':', '#', ',' };
@@ -40,7 +40,7 @@ namespace GameStructure
             return coin;
         }
 
-        public List<String []> createMapList(String str)
+        public List<String []> createMapList(String str)//The returning list includes Brick,Stone,Water string arrays
         {
             List<String []> mapList = new List<String []>();
             char[] predelimiters = new char[] { ':', '#' };
@@ -60,7 +60,7 @@ namespace GameStructure
             return str.Substring(2, 2);
         }
 
-        public Tank getMydetails(String str,String name)
+        public Tank getMydetails(String str,String name)//retuns a tank with my informations
         {
             Tank myTank = new Tank();
             char[] predelimiters = new char[] { ':', '#' };
@@ -80,7 +80,7 @@ namespace GameStructure
             return myTank;
         }
 
-        private Tank getTankDetails(String str)
+        private Tank getTankDetails(String str)//This method is called by the getTankList method
         {
             Tank tnk = new Tank();
             //Console.WriteLine("One string related to a one tank : " + str);
@@ -99,9 +99,10 @@ namespace GameStructure
 
         
 
-        public List<Tank> getTankList(String str)
+        public List<Tank> getTankList(String str)//provides the tank list to the game Engine
         {
             List<Tank> tanklist = new List<Tank>();
+            //pasing str is in the following format
             //str = "G:P0;0,0;1;0;100;0;0:P1;0,9;1;0;100;0;0:P2;9,0;3;0;100;0;0:P3;9,9;0;0;100;0;0:8,6,0;9,3,0;1,7,0;7,1,0;6,8,0#";
             char[] predelimiters = new char[] { ':', '#' };
             string[] arr = str.Split(predelimiters);
@@ -115,7 +116,7 @@ namespace GameStructure
             return tanklist;
         }
 
-        public List<Brick> getBrickList(String str)
+        public List<Brick> getBrickList(String str)//Splits the G:.. string. give the brick list with damage levels
         {
             List<Brick> brickList = new List<Brick>();
             char[] predelimeters = new char[] { ':', '#' };
