@@ -72,7 +72,7 @@ namespace GameStructure
                     Stack<Node> stL = AI.findPath(nearestL);
                     List<int> directionsL = AI.getDirections(stL);//get the direction list for nearest lifepack
 
-                    if (gEngine.myTank.Health>60)//gives priority to find health packs if my health is redusing below 60
+                    if (gEngine.myTank.Health>80)//gives priority to find health packs if my health is redusing below 60
                     {
                         if (!(directionsC == null))
                         {
@@ -86,8 +86,12 @@ namespace GameStructure
                             sendCommands(directionsL, gEngine.myTank);
                         }
                     }
-
-                    
+                    if (isFrontEnemyPresent())
+                    {
+                        gEngine.con.sendDatatoServer("SHOOT#");
+                        System.Threading.Thread.Sleep(1200);
+                    }
+                   
                 }
                 catch (Exception e)
                 {
@@ -207,6 +211,22 @@ namespace GameStructure
                     break;
             }
             return arr;
+        }
+
+        private bool isFrontEnemyPresent()
+        {
+            int[] arr = getFrontCordinate(gEngine.myTank);
+            if ((arr[0] >= 0 && arr[0] < 10) && (arr[1] >= 0 && arr[1] < 10))
+            {
+                for (int i = 0; i < gEngine.tankList.Count; i++)
+                {
+                    if (gEngine.tankList[i].Ycod == arr[0] && gEngine.tankList[i].Xcod == arr[1])
+                    {
+                        return true;
+                    }
+                }
+            }    
+            return false;
         }
     }
 }
