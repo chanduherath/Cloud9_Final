@@ -72,7 +72,7 @@ namespace GameStructure
                     Stack<Node> stL = AI.findPath(nearestL);
                     List<int> directionsL = AI.getDirections(stL);
 
-                    if (directionsL.Count > directionsC.Count)
+                    if (gEngine.myTank.Health>60)
                     {
                         if (!(directionsC == null))
                         {
