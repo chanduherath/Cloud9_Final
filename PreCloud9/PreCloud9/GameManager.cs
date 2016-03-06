@@ -89,7 +89,7 @@ namespace GameStructure
                     if (isFrontEnemyPresent())
                     {
                         gEngine.con.sendDatatoServer("SHOOT#");
-                        System.Threading.Thread.Sleep(1200);
+                        System.Threading.Thread.Sleep(1250);
                     }
                    
                 }
@@ -113,22 +113,22 @@ namespace GameStructure
                         case 0:
                             Console.WriteLine("chandu 0.............................");
                             gEngine.con.sendDatatoServer("UP#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 1:
                             Console.WriteLine("chandu 1.............................");
                             gEngine.con.sendDatatoServer("RIGHT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 2:
                             Console.WriteLine("chandu 2.............................");
                             gEngine.con.sendDatatoServer("DOWN#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 3:
                             Console.WriteLine("chandu 3.............................");
                             gEngine.con.sendDatatoServer("LEFT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         default:
                             Console.WriteLine("chandu def.............................");
@@ -143,30 +143,30 @@ namespace GameStructure
                         case 0:
                             Console.WriteLine("chandu 2 0.............................");
                             gEngine.con.sendDatatoServer("UP#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             gEngine.con.sendDatatoServer("UP#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 1:
                             Console.WriteLine("chandu 2 1.............................");
                             gEngine.con.sendDatatoServer("RIGHT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             gEngine.con.sendDatatoServer("RIGHT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 2:
                             Console.WriteLine("chandu 2 2 .............................");
                             gEngine.con.sendDatatoServer("DOWN#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             gEngine.con.sendDatatoServer("DOWN#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         case 3:
                             Console.WriteLine("chandu  2 3 .............................");
                             gEngine.con.sendDatatoServer("LEFT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             gEngine.con.sendDatatoServer("LEFT#");
-                            System.Threading.Thread.Sleep(1200);
+                            System.Threading.Thread.Sleep(1250);
                             break;
                         default:
                             Console.WriteLine("chandu 2 default.............................");
@@ -184,7 +184,7 @@ namespace GameStructure
         }
 
 
-        private int[] getFrontCordinate(Tank tk)
+        private int[] getFrontCordinate(Tank tk)//returns an integer array including the cordinates of the front cell
         {
             int dir = tk.Direction;
             int[] arr = new int[2];
@@ -213,7 +213,7 @@ namespace GameStructure
             return arr;
         }
 
-        private bool isFrontEnemyPresent()
+        private bool isFrontEnemyPresent()//returns true if a tank is present at the front cell
         {
             int[] arr = getFrontCordinate(gEngine.myTank);
             if ((arr[0] >= 0 && arr[0] < 10) && (arr[1] >= 0 && arr[1] < 10))

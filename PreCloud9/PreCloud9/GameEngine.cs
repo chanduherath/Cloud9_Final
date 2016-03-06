@@ -48,7 +48,7 @@ namespace GameStructure
             lifePackObserver();
         }
 
-        private void initializeMap()
+        private void initializeMap()//initializing the string map with N indicating empty cells
         {
             map = new String[gridSize, gridSize];
             for (int i = 0; i < gridSize; i++)
@@ -60,9 +60,9 @@ namespace GameStructure
             }
         }
 
-        public void callParserMethods(String str)
+        public void callParserMethods(String str)//this method calls relevant paser methods according to the recieving string
         {
-            if (str.StartsWith("I"))
+            if (str.StartsWith("I:"))
             {
                 this.mapList = p.createMapList(str);
                 this.myTank.PlayerName = p.getMyPlayerName(str);
@@ -71,13 +71,13 @@ namespace GameStructure
             }if(str.StartsWith("S")){
                 myTank = p.getMydetails(str,myTank.PlayerName);
             }
-            if (str.StartsWith("G"))
+            if (str.StartsWith("G:"))
             {
                 this.tankList = p.getTankList(str);
                 this.myTank = updateMyTankDetails();
                 this.brickList = p.getBrickList(str);
             }
-            if (str.StartsWith("L"))
+            if (str.StartsWith("L:"))
             {
                 LifePack lf = p.createLifePack(str);
                 Console.WriteLine("Before marking on map");
